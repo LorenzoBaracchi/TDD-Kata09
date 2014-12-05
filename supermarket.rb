@@ -8,7 +8,9 @@ def goodPrice(good)
 end
 
 def discount(goods)
-  return 20 * (goods.count('A')/3).to_i
+  discountA = 20 * (goods.count('A')/3).to_i
+  discountB = 15 * (goods.count('B')/2).to_i
+  discountA + discountB
 end
 
 def price(goods)
@@ -16,5 +18,5 @@ def price(goods)
   goods.each_char do |good|
     total += goodPrice(good)
   end
-  return total - discount(goods)
+  total - discount(goods)
 end

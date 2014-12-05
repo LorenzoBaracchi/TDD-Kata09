@@ -17,6 +17,7 @@ class TestPrice < Test::Unit::TestCase
     assert_equal(260, price("AAAAAA"))
 
     assert_equal(160, price("AAAB"))
+    assert_equal(175, price("AAABB"))
   end
 
 end
