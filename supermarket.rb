@@ -7,10 +7,16 @@ def goodPrice(good)
   match[good]
 end
 
+def discountA(goods)
+  20 * (goods.count('A')/3).to_i
+end
+
+def discountB(goods)
+  15 * (goods.count('B')/2).to_i
+end
+
 def discount(goods)
-  discountA = 20 * (goods.count('A')/3).to_i
-  discountB = 15 * (goods.count('B')/2).to_i
-  discountA + discountB
+  discountA(goods) + discountB(goods)
 end
 
 def price(goods)
