@@ -13,7 +13,11 @@ module Discounts
 
   private
   def self.discountFor(goods, discountedGood)
-    @@prices[discountedGood] * (goods.count(discountedGood)/@@quantity[discountedGood]).to_i
+    @@prices[discountedGood] * numberOfDiscountedItems(goods, discountedGood)
+  end
+
+  def self.numberOfDiscountedItems(goods, discountedGood)
+    (goods.count(discountedGood)/@@quantity[discountedGood]).to_i
   end
 
 end
