@@ -1,9 +1,22 @@
-def price(goods)
-  if goods=="A" then
+def goodPrice(good)
+  case good
+  when 'A'
     return 50
+  when 'B'
+    return 30
+  when 'C'
+    return 20
+  when 'D'
+    return 15
+  else
+    return 0
   end
-  if goods=="AB" then
-    return 80
+end
+
+def price(goods)
+  total = 0
+  goods.each_char do |good|
+    total += goodPrice(good)
   end
-  return 0
+  return total
 end
