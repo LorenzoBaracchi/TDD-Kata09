@@ -7,16 +7,20 @@ def goodPrice(good)
   match[good]
 end
 
-def discountA(goods)
-  20 * (goods.count('A')/3).to_i
-end
+def discountFor(goods, discountedGood)
+  discountPrice = Hash.new
+  discountPrice['A'] = 20
+  discountPrice['B'] = 15
 
-def discountB(goods)
-  15 * (goods.count('B')/2).to_i
+  discountQuantity = Hash.new
+  discountQuantity['A'] = 3
+  discountQuantity['B'] = 2
+
+  discountPrice[discountedGood] * (goods.count(discountedGood)/discountQuantity[discountedGood]).to_i
 end
 
 def discount(goods)
-  discountA(goods) + discountB(goods)
+  discountFor(goods, 'A') + discountFor(goods, 'B')
 end
 
 def price(goods)
