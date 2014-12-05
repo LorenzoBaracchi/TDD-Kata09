@@ -8,7 +8,7 @@ def goodPrice(good)
 end
 
 def discount(goods)
-  if goods.count('A') == 3
+  if goods.count('A') >= 3
     then return 20
   end
   return 0
