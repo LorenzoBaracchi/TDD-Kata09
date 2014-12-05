@@ -9,7 +9,7 @@ end
 
 def discount(goods)
   if goods.count('A') >= 3
-    then return 20
+    then return 20 * (goods.count('A')/3).to_i
   end
   return 0
 end
