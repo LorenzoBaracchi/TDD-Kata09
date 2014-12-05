@@ -1,16 +1,10 @@
 def goodPrice(good)
-  case good
-  when 'A'
-    return 50
-  when 'B'
-    return 30
-  when 'C'
-    return 20
-  when 'D'
-    return 15
-  else
-    return 0
-  end
+  match = Hash.new
+  match['A'] = 50
+  match['B'] = 30
+  match['C'] = 20
+  match['D'] = 15
+  match[good]
 end
 
 def price(goods)
