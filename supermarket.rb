@@ -1,0 +1,2 @@
+def price(goods)
+end
