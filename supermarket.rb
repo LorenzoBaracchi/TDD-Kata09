@@ -9,6 +9,10 @@ class CheckOut
   def initialize(pricing_rules)
     @total = 0
   end
+
+  def scan(item)
+  @total += Goods.priceFor(item)
+  end
 end
 
 def totalPrice(goods)

@@ -26,7 +26,7 @@ class TestPrice < Test::Unit::TestCase
   def test_incremental
     co = CheckOut.new(RULES)
     assert_equal(  0, co.total)
-
+    co.scan("A");  assert_equal( 50, co.total)
   end
 
 end
