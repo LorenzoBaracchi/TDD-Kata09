@@ -16,7 +16,7 @@ class CheckOut
   end
 
   def total
-    computeTotal - @discountsRules.discount(@items)
+    computeTotal - computeDiscount
   end
 
   private
@@ -27,6 +27,11 @@ class CheckOut
     end
     total
   end
+
+  def computeDiscount
+    @discountsRules.discount(@items)
+  end
+  
 end
 
 def price(goods)
