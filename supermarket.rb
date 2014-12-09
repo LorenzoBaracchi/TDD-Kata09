@@ -1,8 +1,6 @@
 require_relative "goods"
 require_relative "discounts"
 
-RULES = {:goods=> Goods, :discounts => Discounts}
-
 class CheckOut
 
   def initialize(pricing_rules)
@@ -31,11 +29,26 @@ class CheckOut
   def computeDiscount
     @discountsRules.discount(@items)
   end
-  
+
 end
 
+
 def price(goods)
-  co = CheckOut.new(RULES)
+  co = CheckOut.new(create_rules)
   goods.split(//).each { |item| co.scan(item) }
   co.total
+end
+
+def create_rules
+  goods = Goods.new
+  goods.rule('A', 50)
+  goods.rule('B', 30)
+  goods.rule('C', 20)
+  goods.rule('D', 15)
+
+  discounts = Discounts.new
+  discounts.rule('A', 20, 3)
+  discounts.rule('B', 15, 2)
+
+  {:goods=> goods, :discounts => discounts}
 end

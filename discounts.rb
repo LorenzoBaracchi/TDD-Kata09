@@ -1,35 +1,38 @@
-module Discounts
+class Discount
 
-  class Discount
+  attr_accessor :amount
+  attr_accessor :quantity
 
-    attr_accessor :amount
-    attr_accessor :quantity
-
-    def initialize(amount, quantity)
-      @amount = amount
-      @quantity = quantity
-    end
+  def initialize(amount, quantity)
+    @amount = amount
+    @quantity = quantity
   end
 
-  @@rules = Hash.new
-  @@rules['A'] = Discount.new(20, 3)
-  @@rules['B'] = Discount.new(15, 2)
+  def computeDiscount(numberOfItems)
+    @amount * applicableDiscount(numberOfItems)
+  end
 
-  def self.discount(goodsList)
+  def applicableDiscount(numberOfItems)
+    (numberOfItems/@quantity).to_i
+  end
+end
+
+class Discounts
+
+  def initialize()
+    @rules = Hash.new
+  end
+
+  def rule(good, amount, quantity)
+    @rules[good] = Discount.new(amount, quantity)
+  end
+
+  def discount(goodsList)
     total = 0
-    @@rules.each do |key, pair|
-      total += discountFor(goodsList, key, pair)
+    @rules.each do |key, discount|
+      total += discount.computeDiscount(goodsList.count(key))
     end
     total
-  end
-
-  private
-  def self.discountFor(goodsList, good, discount)
-    discount.amount * numberOfDiscountedItems(goodsList, good, discount)
-  end
-
-  def self.numberOfDiscountedItems(goodsList, good, discount)
-    (goodsList.count(good)/discount.quantity).to_i
   end
 
 end

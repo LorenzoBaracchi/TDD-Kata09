@@ -1,12 +1,15 @@
-module Goods
-  @@goods = Hash.new
-  @@goods['A'] = 50
-  @@goods['B'] = 30
-  @@goods['C'] = 20
-  @@goods['D'] = 15
+class Goods
 
-  def self.priceFor(good)
-    @@goods[good]
+  def initialize()
+    @goods = Hash.new
+  end
+
+  def rule(good, price)
+    @goods[good] = price
+  end
+
+  def priceFor(good)
+    @goods[good]
   end
 
 end

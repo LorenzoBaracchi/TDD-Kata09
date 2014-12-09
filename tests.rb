@@ -1,4 +1,5 @@
 require_relative "supermarket"
+require_relative "discounts"
 require "test/unit"
 
 class TestPrice < Test::Unit::TestCase
@@ -22,7 +23,7 @@ class TestPrice < Test::Unit::TestCase
   end
 
   def test_incremental
-    co = CheckOut.new(RULES)
+    co = CheckOut.new(create_rules)
     assert_equal(  0, co.total)
     co.scan("A");  assert_equal( 50, co.total)
     co.scan("B");  assert_equal( 80, co.total)
