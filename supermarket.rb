@@ -8,10 +8,16 @@ class CheckOut
 
   def initialize(pricing_rules)
     @total = 0
+    @items = []
   end
 
   def scan(item)
   @total += Goods.priceFor(item)
+  @items << item
+  end
+
+  def total
+    @total - Discounts.discount(@items)
   end
 end
 
