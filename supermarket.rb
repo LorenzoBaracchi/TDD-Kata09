@@ -1,34 +1,29 @@
 require_relative "goods"
 require_relative "discounts"
 
+RULES = {:goods=> Goods, :discounts => Discounts}
 
 class CheckOut
-
-  attr_accessor :total
 
   def initialize(pricing_rules)
     @total = 0
     @items = []
+    @goodsRules = pricing_rules[:goods]
+    @discountsRules = pricing_rules[:discounts]
   end
 
   def scan(item)
-  @total += Goods.priceFor(item)
+  @total += @goodsRules.priceFor(item)
   @items << item
   end
 
   def total
-    @total - Discounts.discount(@items)
+    @total - @discountsRules.discount(@items)
   end
-end
-
-def totalPrice(goods)
-  total = 0
-  goods.each_char do |good|
-    total += Goods.priceFor(good)
-  end
-  total
 end
 
 def price(goods)
-  totalPrice(goods) - Discounts.discount(goods)
+  co = CheckOut.new(RULES)
+  goods.split(//).each { |item| co.scan(item) }
+  co.total
 end
