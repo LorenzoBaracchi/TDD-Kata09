@@ -3,6 +3,7 @@ require "test/unit"
 
 class TestPrice < Test::Unit::TestCase
 
+  RULES = nil
 
   def test_totals
     assert_equal(  0, price(""))
@@ -20,6 +21,12 @@ class TestPrice < Test::Unit::TestCase
     assert_equal(175, price("AAABB"))
     assert_equal(190, price("AAABBD"))
     assert_equal(190, price("DABABA"))
+  end
+
+  def test_incremental
+    co = CheckOut.new(RULES)
+    assert_equal(  0, co.total)
+
   end
 
 end
