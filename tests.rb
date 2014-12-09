@@ -28,6 +28,7 @@ class TestPrice < Test::Unit::TestCase
     assert_equal(  0, co.total)
     co.scan("A");  assert_equal( 50, co.total)
     co.scan("B");  assert_equal( 80, co.total)
+    co.scan("A");  assert_equal(130, co.total)
   end
 
 end
